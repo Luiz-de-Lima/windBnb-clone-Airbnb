@@ -1,0 +1,52 @@
+@import url("../../styleGlobal.scss");
+
+.container-item {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+
+  .container-item__filtered {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    margin: 2rem 1rem;
+    width: 30%;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+    img {
+      width: 100%;
+      height: 267px;
+      border-radius: 1.4rem;
+    }
+    .container-item__item-description {
+      p {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+
+        span {
+          display: flex;
+          align-items: center;
+          &.host {
+            border: 1px solid #333333;
+            border-radius: 1rem;
+            padding: 5px 10px;
+            font-weight: 700;
+          }
+          i {
+            color: #eb5757;
+          }
+        }
+      }
+      h3 {
+        margin: 0.8rem 0;
+        color: #333333;
+      }
+    }
+  }
+}

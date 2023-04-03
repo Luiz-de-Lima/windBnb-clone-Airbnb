@@ -1,0 +1,80 @@
+@import url("../../styleGlobal.scss");
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  color: #4f4f4f;
+
+  .container-card__title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 2rem 0;
+
+    h2 {
+      color: #333333;
+    }
+  }
+  .container-card-houses {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .container-card-houses__item {
+      width: 31%;
+
+      img {
+        width: 100%;
+        max-width: 394px;
+        height: 267px;
+        border-radius: 1.4rem;
+      }
+      .container-card-houses__item-description {
+        p {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 10px;
+
+          span {
+            display: flex;
+            align-items: center;
+            &.host {
+              border: 1px solid #333333;
+              border-radius: 1rem;
+              padding: 5px 10px;
+              font-weight: 700;
+            }
+            i {
+              color: #eb5757;
+            }
+          }
+        }
+        h3 {
+          margin: 0.8rem 0;
+        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .container-card-houses {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 100%;
+        max-width: 350px;
+        height: 267px;
+        border-radius: 1.4rem;
+      }
+      .container-card-houses__item {
+        width: 100%;
+
+        p {
+          font-size: 0.8rem;
+        }
+        h3 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
