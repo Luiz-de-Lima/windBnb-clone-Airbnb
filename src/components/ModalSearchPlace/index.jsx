@@ -10,7 +10,8 @@ export const ModalSearchPlace = ({ onClick }) => {
   const [children, setChildren] = useState(0);
   const [valueInput, setValueInput] = useState("");
   const [numberPeople, setNumberPeople] = useState(0);
-  const [filter, setfilter] = useState([]);
+  const [filter, setFilter] = useState([]);
+
   const handleAdults = (tipo) => {
     if (tipo === "+") {
       setAdult(adult + 1);
@@ -30,20 +31,22 @@ export const ModalSearchPlace = ({ onClick }) => {
   };
 
   const handleChange = (e) => {
+    // const value = .toLowerCase();
     setValueInput(e.target.value);
   };
   const handleNumperPeople = (e) => {
     setNumberPeople(e.target.value);
   };
   const handleSearchPlace = () => {
-    if (valueInput.length > 3 && numberPeople > 0) {
+    if (valueInput.length > 3 || numberPeople > 0) {
       const filteredPlace = dataJson.filter((item) => {
-        return valueInput.toLowerCase() === ""
-          ? item.city.toLowerCase()
-          : item.city.toLowerCase().includes(valueInput);
+        return (
+          item.city.toLowerCase() === valueInput &&
+          item.maxGuests >= numberPeople
+        );
       });
       console.log(filteredPlace);
-      setfilter(filteredPlace);
+      setFilter(filteredPlace);
     } else {
       alert("campo(s) vazio");
     }
@@ -114,7 +117,7 @@ export const ModalSearchPlace = ({ onClick }) => {
               </div>
             </div>
             <div className="children">
-              <p className="people">Children</p>
+              <p className="people">Crianças</p>
               <p className="age">Ages 2 -12</p>
               <div className="buttons">
                 <Button

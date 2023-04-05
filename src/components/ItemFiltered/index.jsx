@@ -3,6 +3,7 @@ import { Star } from "react-bootstrap-icons";
 import "./style.scss";
 
 export const ItemFiltered = ({ data }) => {
+  console.log(data);
   return (
     <div className="container-global">
       <div className="container-item">
