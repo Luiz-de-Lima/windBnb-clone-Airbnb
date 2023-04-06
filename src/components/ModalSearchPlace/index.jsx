@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../Buttons";
-import { Search, XLg } from "react-bootstrap-icons";
+import { CupHot, Search, XLg } from "react-bootstrap-icons";
 import dataJson from "../../stays.json";
 import { ItemFiltered } from "../ItemFiltered";
 import "./style.scss";
@@ -11,6 +11,7 @@ export const ModalSearchPlace = ({ onClick }) => {
   const [valueInput, setValueInput] = useState("");
   const [numberPeople, setNumberPeople] = useState(0);
   const [filter, setFilter] = useState([]);
+  const [totalGuests, setTotalGuests] = useState(0);
 
   const handleAdults = (tipo) => {
     if (tipo === "+") {
@@ -31,22 +32,29 @@ export const ModalSearchPlace = ({ onClick }) => {
   };
 
   const handleChange = (e) => {
-    // const value = .toLowerCase();
     setValueInput(e.target.value);
   };
   const handleNumperPeople = (e) => {
-    setNumberPeople(e.target.value);
+    setNumberPeople(Number(e.target.value));
   };
   const handleSearchPlace = () => {
-    if (valueInput.length > 3 || numberPeople > 0) {
-      const filteredPlace = dataJson.filter((item) => {
-        return (
-          item.city.toLowerCase() === valueInput &&
-          item.maxGuests >= numberPeople
+    //fazer a verificação se a quantidade de adultos mais a qtd de crianças não maiores que o input de convidados
+    let total = adult + children;
+    setTotalGuests(total);
+    if (valueInput.length > 3 && numberPeople > 0) {
+      if (numberPeople === totalGuests) {
+        const filteredPlace = dataJson.filter((item) => {
+          return (
+            item.city.toLowerCase() === valueInput &&
+            item.maxGuests >= numberPeople
+          );
+        });
+        setFilter(filteredPlace);
+      } else {
+        alert(
+          "A quantidade de pessoas inseridas não bate com o total de adultos e crianças!"
         );
-      });
-      console.log(filteredPlace);
-      setFilter(filteredPlace);
+      }
     } else {
       alert("campo(s) vazio");
     }
